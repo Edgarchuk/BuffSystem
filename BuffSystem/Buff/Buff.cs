@@ -1,16 +1,15 @@
+using BuffSystem.Buff.Visitor;
+
 namespace BuffSystem.Buff
 {
     public abstract class Buff
     {
-        public abstract State Moodify(State state);
+        public abstract void Accept(BuffVisitor visitor);
     }
 
-    class BuffImpl : Buff
+    public interface IStateModify
     {
-        public override State Moodify(State state)
-        {
-            state.Heal += 20;
-            return state;
-        }
+        public State Modify(State state);
     }
+    
 }
