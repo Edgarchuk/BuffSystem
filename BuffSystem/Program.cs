@@ -11,14 +11,17 @@ namespace BuffSystem
         {
             Buffs buffs = new Buffs()
             {
-                new AddHeal(),
-                new AddHeal(),
-                new SubHeal()
+                new AddSubHeal(),
+                new AddSubHeal()
             };
-
-            HealCalculateVisitorImpl buffVisitor = new HealCalculateVisitorImpl(new State());
-            buffs.Accept(buffVisitor);
-            Console.WriteLine(buffVisitor.State.Heal);
+            
+            AddBuffVisitorImpl addBuffVisitor = new AddBuffVisitorImpl();
+            buffs.Accept(addBuffVisitor);
+            
+            HealCalculateVisitorImpl healCalculateVisitor = new HealCalculateVisitorImpl(new State());
+            addBuffVisitor.AddBuffs.Accept(healCalculateVisitor);
+            
+            Console.WriteLine(healCalculateVisitor.State.Heal);
         }
     }
 }

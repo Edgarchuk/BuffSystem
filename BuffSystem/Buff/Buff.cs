@@ -11,5 +11,10 @@ namespace BuffSystem.Buff
     {
         public State Modify(State state);
     }
-    
+
+    public interface IBuffAdd
+    {
+        public Buff GetBuff();
+    }
+
 }
